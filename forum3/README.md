@@ -104,6 +104,3 @@ This project will help you learn about:
 **go run cmd/main.go**
 
 ### CREATED BY:
-**@azhakuli**
-**@botaakylbek0**
-**@anell**
