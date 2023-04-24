@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ .Post.Title }}</title>
+	<meta charset="UTF-8">
+	{{ $IsAuth := .User.IsAuth }}
+	{{ $PostID := .Post.Id }}
+	<link rel="stylesheet" href="../static/post.css">
+
+
+	
+</head>
+<body>
+    <header>
+		<div class="container">
+
+			<div class="navbar">
+
+        <a href="/">Home Page</a>
+
+		{{ if $IsAuth }}
+        	<div class="nav_link">
+			  <a class="username">username: {{.Username}}</a>
+			</div>     
+			
+			<div class="nav_link">
+			<a href="/post/myLikedPost">My Liked Posts</a>
+			</div>
+
+			<div class="nav_link">
+			<a href="/post/myPost">My Posts</a>
+			</div>
+  
+			<div class="nav_link">
+			<a href="/post/create">Create Post</a>
+			</div>
+  
+			<div class="nav_link">
+			  <a href="/logout">Logout</a>
+			</div>
+
+		{{ else }}
+			<a href="/signin">Log in         to leave a comment.</a> 
+		{{ end }}
+		<div>
+		</div>
+
+
+		</div>
+    </header>
+	<div class="container">
+	<div class="post">
+		<h1>{{ .Post.Title }}</h1>
+		<p>{{ .Post.Description }}</p>
+		<p>Author: {{ .Post.Author }}</p>
+		<p>Likes: {{ .Post.Likes }}, Dislikes: {{ .Post.Dislikes }}</p>
+	</div>
+	<div class="emotion">
+    	{{if $IsAuth}}
+		<form action="/emotion/post/?id={{.Post.Id}}" method="post">
+			<button type="submit" value="like" name="islike">like</button>
+			<button type="submit" value="dislike" name="islike">dislike</button>
+		</form>
+		<hr>
+		<form action="/post/?id={{.Post.Id}}" method="post">
+			<label for="text">Comment:</label><br>
+			<textarea id="text" name="text"></textarea><br>
+			<input type="submit" value="Submit">
+		</form>
+		{{end}}
+	</div>
+    <hr>
+	
+ 
+	<div class="comments">
+		<h2>Comments</h2>
+	{{ if .Comment }}
+		<ul>
+			{{ range .Comment }}
+				<li>
+				<h3>{{ .Creator }}</h3>
+				<p>{{ .Text }}</p>
+				<p>Likes: {{ .Likes }}, Dislikes: {{ .Dislikes }}</p>
+				<p>Created at: {{ .Created_at }}</p>
+                	{{ if $IsAuth}}
+                    	<form action="/emotion/comment/?id={{.Id}}&postid={{$PostID}}" method="post">
+                        	<button type="submit" value="like" name="islike">like</button>
+                        	<button type="submit" value="dislike" name="islike">dislike</button>
+                    	</form>
+                    	<hr>
+                	{{ end }}
+				</li>
+			{{ end }}
+		</ul>
+	{{ else }}
+		<p>No comments yet.</p>
+	{{ end }}
+	<hr>
+	</div>
+	<img class="flowers one1" src="https://png.pngtree.com/png-clipart/20221006/ourmid/pngtree-aesthetic-flower-decoration-png-image_6289296.png" alt="">
+      <img class="flowers two2" src="https://png.pngtree.com/png-clipart/20221006/ourmid/pngtree-aesthetic-flower-decoration-png-image_6289296.png" alt="">
+      <img class="flowers three3" src="https://png.pngtree.com/png-clipart/20221006/ourmid/pngtree-aesthetic-flower-decoration-png-image_6289296.png" alt="">
+</body>
+</html>

@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500&display=swap');
+body {
+    font-family: 'DynaPuff', cursive;
+    background-color: #f7f7f7;
+}
+header {
+    background-color: #9DC08B;
+    display: flex;
+    position: fixed;
+    padding: 20px 0;
+    top: 0;
+    left: 0; 
+    width: 100%;
+}
+.contaner1{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+nav {
+    display: flex;
+align-items: center;
+justify-content: space-between;
+font-size: 22px;
+}
+nav a{
+    text-decoration: none;
+    color: #e8f9ff;
+    transition: all 0.3s ease;
+}
+nav a:hover {
+    color: #bb8a81;
+}
+.username {
+    color: darkcyan;
+    font-weight: bold;
+}
+
+.space {
+    height: 150px;
+}
+.bg.l2{
+    position: fixed;
+    bottom: 0;
+    z-index: -1;
+    left: 0;
+}

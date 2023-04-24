@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Forum</title>
+    <link rel="stylesheet" href="../static/style.css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+      
+        <div class="navbar">
+          {{if .User.IsAuth}}
+
+          <div class="nav_links">
+            <div class="home_button">
+            <a href="/">Home</a>    
+            <a href="/post/myLikedPost">My Liked Posts</a>
+          
+            <a href="/post/myPost">My Posts</a>
+            
+            <a href="/post/create">Create Post</a>
+    
+            
+            </div>            
+
+            <div class="nav_link">
+            <a class="username">{{.Username}}</a>
+            <a href="/logout">Logout</a>
+          </div>
+            
+            {{else}}
+
+          <div class="nav_link1">
+          <a href="/signin">SignIn</a>
+          <a href="/signup">SignUp</a>
+          </div>
+          {{end}}
+          <div>
+
+
+          <!-- {{range .Category}}
+          <a href="/?category={{.}}">{{.}}</a>
+          {{end}} -->
+
+          </div>
+          </header>
+          <div class="space"></div>
+          <div class="scroll-container">
+              {{range .Category}}
+          <a href="/?category={{.}}">{{.}}</a>
+              {{end}}
+          </div>
+
+    <main>
+      {{range .Posts}}
+      <div class="container">
+        <div class="post">
+          <!-- <a href="/post/?id={{.Id}}">        </a> -->
+          <div class="post__header">
+            <p>{{.Author}}</p>
+            <a href="/post/?id={{.Id}}" class="title">{{.Title}}</a>
+          </div>
+          <p class="description">{{.Description}}</p>
+          <div class="category">
+            <p>Category: </p>
+            {{range .Category}}
+            {{.}}
+            {{end}}
+          </div>
+        </div>
+      </div>
+      
+      {{end}}
+    </main>
+  </body>
+</html>

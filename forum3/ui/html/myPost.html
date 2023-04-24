@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My post</title>
+    <link rel="stylesheet" href="../static/myPost.css">
+</head>
+<body>
+    <header>
+      <div class="contaner2">
+      <nav>
+        {{if .User.IsAuth}}
+        <p class="username">Username: {{.Username}}</p>
+
+        <a href="/">Home Page</a>
+        
+        <a href="/post/myLikedPost">My Liked Posts</a>
+       
+        <a href="/post/create">Create Post</a>
+        <a href="/logout">Logout</a>
+        {{else}}
+        <a href="/signin">Login</a>
+        {{end}}
+        
+      </nav>
+        <br>
+      </header>
+      <div class="space"></div>
+      <main>
+        {{range .Posts}}
+        <article >
+          <a href="/post/?id={{.Id}}">
+          <h2>{{.Title}}</h2>
+          <p>{{.Description}}</p>
+          {{range .Category}}
+          {{.}}
+          {{end}}
+          </a>
+          </article>
+        
+        {{end}}
+      </main>
+      <div>
+        <img class="bg l4" src="https://www.kindpng.com/picc/m/305-3055177_anime-flowers-png-transparent-png.png" alt="">
+        
+</body>
+</html>
